@@ -15,9 +15,11 @@ public class Application {
             CurrencySearch currencySearch = new CurrencySearch();
             CurrencyPairConversion newConversion;
 
-            double amount = 0.0;
+            double amount;
+            double conversionResult;
 
             byte option;
+
             while (true) {
                 option = menu();
 
@@ -25,34 +27,77 @@ public class Application {
                     case 1: {
                         amount = amountMenu();
                         newConversion = currencySearch.searchConversion("BRL", "USD", amount);
-                        double conversionResult = Double.parseDouble(newConversion.conversionResult());
+                        conversionResult = Double.parseDouble(newConversion.conversionResult());
                         System.out.printf("R$ %.2f equivale a $ %.2f\n", amount, conversionResult);
-                        System.out.println("Pressione a teclada de entrada (enter) para continuar...");
-                        scanner.nextLine();
+                        systemPause();
                         break;
                     }
                     case 2: {
+                        amount = amountMenu();
+                        newConversion = currencySearch.searchConversion("USD", "BRL", amount);
+                        conversionResult = Double.parseDouble(newConversion.conversionResult());
+                        System.out.printf("$ %.2f equivale a R$ %.2f\n", amount, conversionResult);
+                        systemPause();
                         break;
                     }
                     case 3: {
+                        amount = amountMenu();
+                        newConversion = currencySearch.searchConversion("BRL", "CAD", amount);
+                        conversionResult = Double.parseDouble(newConversion.conversionResult());
+                        System.out.printf("R$ %.2f equivale a C$ %.2f\n", amount, conversionResult);
+                        systemPause();
                         break;
                     }
                     case 4: {
+                        amount = amountMenu();
+                        newConversion = currencySearch.searchConversion("CAD", "BRL", amount);
+                        conversionResult = Double.parseDouble(newConversion.conversionResult());
+                        System.out.printf("C$ %.2f equivale a R$ %.2f\n", amount, conversionResult);
+                        systemPause();
                         break;
                     }
                     case 5: {
+                        amount = amountMenu();
+                        newConversion = currencySearch.searchConversion("BRL", "AUD", amount);
+                        conversionResult = Double.parseDouble(newConversion.conversionResult());
+                        System.out.printf("R$ %.2f equivale a A$ %.2f\n", amount, conversionResult);
+                        systemPause();
                         break;
                     }
                     case 6: {
+                        amount = amountMenu();
+                        newConversion = currencySearch.searchConversion("AUD", "BRL", amount);
+                        conversionResult = Double.parseDouble(newConversion.conversionResult());
+                        System.out.printf("A$ %.2f equivale a R$ %.2f\n", amount, conversionResult);
+                        systemPause();
                         break;
                     }
                     case 7: {
+                        amount = amountMenu();
+                        newConversion = currencySearch.searchConversion("BRL", "GBP", amount);
+                        conversionResult = Double.parseDouble(newConversion.conversionResult());
+                        System.out.printf("R$ %.2f equivale a £ %.2f\n", amount, conversionResult);
+                        systemPause();
                         break;
                     }
                     case 8: {
+                        amount = amountMenu();
+                        newConversion = currencySearch.searchConversion("GBP", "BRL", amount);
+                        conversionResult = Double.parseDouble(newConversion.conversionResult());
+                        System.out.printf("£ %.2f equivale a R$ %.2f\n", amount, conversionResult);
+                        systemPause();
                         break;
                     }
                     case 9: {
+                        System.out.println("Insira o código de três caracteres da moeda base:");
+                        String baseCurrency = scanner.nextLine();
+                        System.out.println("Insira o código de três caracteres da moeda para a qual deseja converter:");
+                        String targetCurrency = scanner.nextLine();
+                        amount = amountMenu();
+                        newConversion = currencySearch.searchConversion(baseCurrency, targetCurrency, amount);
+                        conversionResult = Double.parseDouble(newConversion.conversionResult());
+                        System.out.printf("%s %.2f equivale a %s %.2f\n", baseCurrency.toUpperCase(), amount, targetCurrency.toUpperCase(), conversionResult);
+                        systemPause();
                         break;
                     }
                     case 0: {
@@ -63,6 +108,8 @@ public class Application {
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
             System.out.println("Ending application");
+        } finally {
+            scanner.close();
         }
     }
 
@@ -94,12 +141,8 @@ public class Application {
         return amount;
     }
 
-    private static void otherConversionOptionFlow() {
-        System.out.println("Digite o código de três caracteres da moeda base:");
-        String baseCurrency = scanner.nextLine();
-        System.out.println("Digite o código de três caracteres da moeda a ser convertida:");
-        String targetCurrency = scanner.nextLine();
-        System.out.println("Informa o valor (decimal) a ser convertido:");
-        Double amount = scanner.nextDouble();
+    private static void systemPause() {
+        System.out.println("Pressiona a teclada de entrada (enter) para continuar...");
+        scanner.nextLine();
     }
 }
