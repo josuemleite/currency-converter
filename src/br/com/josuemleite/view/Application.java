@@ -3,14 +3,17 @@ package br.com.josuemleite.view;
 import br.com.josuemleite.controller.CurrencySearch;
 import br.com.josuemleite.model.CurrencyPairConversion;
 
+import java.util.InputMismatchException;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Application {
 
-    private static final Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner;
 
     public static void main(String[] args) {
         try {
+            scanner = new Scanner(System.in);
 
             CurrencySearch currencySearch = new CurrencySearch();
             CurrencyPairConversion newConversion;
@@ -103,13 +106,23 @@ public class Application {
                     case 0: {
                         return;
                     }
+                    default: {
+                        System.out.println("Opção inválida. Por favor, insira uma opção válida.");
+                        systemPause();
+                    }
                 }
             }
+        } catch (InputMismatchException e) {
+            System.out.println("Valor muito diferente do esperado...");
+        } catch (NullPointerException e) {
+            System.out.println("Objeto com valor nulo foi encontrado: " + e.getMessage());
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
-            System.out.println("Ending application");
         } finally {
-            scanner.close();
+            if (!Objects.isNull(scanner)) {
+                scanner.close();
+            }
+            System.out.println("Finalizando a aplicação...");
         }
     }
 
