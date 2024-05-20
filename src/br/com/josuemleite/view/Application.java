@@ -27,71 +27,63 @@ public class Application {
                 option = menu();
 
                 switch (option) {
-                    case 1: {
+                    case 1:
                         amount = amountMenu();
                         newConversion = currencySearch.searchConversion("BRL", "USD", amount);
                         conversionResult = Double.parseDouble(newConversion.conversionResult());
                         System.out.printf("R$ %.2f equivale a $ %.2f\n", amount, conversionResult);
                         systemPause();
                         break;
-                    }
-                    case 2: {
+                    case 2:
                         amount = amountMenu();
                         newConversion = currencySearch.searchConversion("USD", "BRL", amount);
                         conversionResult = Double.parseDouble(newConversion.conversionResult());
                         System.out.printf("$ %.2f equivale a R$ %.2f\n", amount, conversionResult);
                         systemPause();
                         break;
-                    }
-                    case 3: {
+                    case 3:
                         amount = amountMenu();
                         newConversion = currencySearch.searchConversion("BRL", "CAD", amount);
                         conversionResult = Double.parseDouble(newConversion.conversionResult());
                         System.out.printf("R$ %.2f equivale a C$ %.2f\n", amount, conversionResult);
                         systemPause();
                         break;
-                    }
-                    case 4: {
+                    case 4:
                         amount = amountMenu();
                         newConversion = currencySearch.searchConversion("CAD", "BRL", amount);
                         conversionResult = Double.parseDouble(newConversion.conversionResult());
                         System.out.printf("C$ %.2f equivale a R$ %.2f\n", amount, conversionResult);
                         systemPause();
                         break;
-                    }
-                    case 5: {
+                    case 5:
                         amount = amountMenu();
                         newConversion = currencySearch.searchConversion("BRL", "AUD", amount);
                         conversionResult = Double.parseDouble(newConversion.conversionResult());
                         System.out.printf("R$ %.2f equivale a A$ %.2f\n", amount, conversionResult);
                         systemPause();
                         break;
-                    }
-                    case 6: {
+                    case 6:
                         amount = amountMenu();
                         newConversion = currencySearch.searchConversion("AUD", "BRL", amount);
                         conversionResult = Double.parseDouble(newConversion.conversionResult());
                         System.out.printf("A$ %.2f equivale a R$ %.2f\n", amount, conversionResult);
                         systemPause();
                         break;
-                    }
-                    case 7: {
+                    case 7:
                         amount = amountMenu();
                         newConversion = currencySearch.searchConversion("BRL", "GBP", amount);
                         conversionResult = Double.parseDouble(newConversion.conversionResult());
                         System.out.printf("R$ %.2f equivale a £ %.2f\n", amount, conversionResult);
                         systemPause();
                         break;
-                    }
-                    case 8: {
+                    case 8:
                         amount = amountMenu();
                         newConversion = currencySearch.searchConversion("GBP", "BRL", amount);
                         conversionResult = Double.parseDouble(newConversion.conversionResult());
                         System.out.printf("£ %.2f equivale a R$ %.2f\n", amount, conversionResult);
                         systemPause();
                         break;
-                    }
-                    case 9: {
+                    case 9:
                         System.out.println("Insira o código de três caracteres da moeda base:");
                         String baseCurrency = scanner.nextLine();
                         System.out.println("Insira o código de três caracteres da moeda para a qual deseja converter:");
@@ -102,14 +94,11 @@ public class Application {
                         System.out.printf("%s %.2f equivale a %s %.2f\n", baseCurrency.toUpperCase(), amount, targetCurrency.toUpperCase(), conversionResult);
                         systemPause();
                         break;
-                    }
-                    case 0: {
+                    case 0:
                         return;
-                    }
-                    default: {
+                    default:
                         System.out.println("Opção inválida. Por favor, insira uma opção válida.");
                         systemPause();
-                    }
                 }
             }
         } catch (InputMismatchException e) {
